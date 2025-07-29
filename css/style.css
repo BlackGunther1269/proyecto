@@ -1,0 +1,239 @@
+body {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #0d1117;
+    color: white;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.falling-particles-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    background: transparent;
+}
+
+.falling-particles-background::before,
+.falling-particles-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: repeat;
+    animation: sparkle-fall 30s linear infinite;
+}
+
+.falling-particles-background::before {
+    background-image: radial-gradient(circle at 10% 20%, #FFC0CB 1px, transparent 1px),
+                      radial-gradient(circle at 30% 80%, #FFB6C1 1px, transparent 1px),
+                      radial-gradient(circle at 50% 30%, #FF69B4 1px, transparent 1px),
+                      radial-gradient(circle at 70% 90%, #FF1493 1px, transparent 1px),
+                      radial-gradient(circle at 90% 40%, #FFD700 1px, transparent 1px),
+                      radial-gradient(circle at 5% 60%, #ADFF2F 1px, transparent 1px),
+                      radial-gradient(circle at 75% 15%, #00FFFF 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation-duration: 25s;
+}
+
+.falling-particles-background::after {
+    background-image: radial-gradient(circle at 20% 70%, #FFB6C1 1.5px, transparent 1.5px),
+                      radial-gradient(circle at 40% 10%, #FF69B4 1.5px, transparent 1.5px),
+                      radial-gradient(circle at 60% 60%, #FF1493 1.5px, transparent 1.5px),
+                      radial-gradient(circle at 80% 20%, #FFD700 1.5px, transparent 1.5px),
+                      radial-gradient(circle at 15% 35%, #ADFF2F 1.5px, transparent 1.5px),
+                      radial-gradient(circle at 85% 50%, #00FFFF 1.5px, transparent 1.5px);
+    background-size: 70px 70px;
+    animation-duration: 35s;
+    animation-delay: -10s;
+}
+
+@keyframes sparkle-fall {
+    from {
+        background-position: 0 -100%;
+    }
+    to {
+        background-position: 0 100%;
+    }
+}
+
+.birthday-card {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #FF00FF;
+    position: relative;
+    overflow: hidden;
+    width: 90%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.greeting {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.main-title {
+    font-size: 2.5em;
+    margin-top: 20px;
+    color: white;
+}
+
+#recipient-name {
+    color: #FF00FF;
+}
+
+.animation-container {
+    position: relative;
+    width: 100%;
+    height: 150px; /* Ajusta la altura si es necesario para el espacio de los corazones */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.bear-image {
+    position: absolute;
+    left: 10%; /* Posiciona el osito a la izquierda */
+    width: 100px; /* Ancho del osito */
+    height: auto;
+    z-index: 1;
+}
+
+.hearts-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Importante para que los corazones no se salgan del contenedor */
+}
+
+/* Estilos para cada corazón individual */
+.heart {
+    position: absolute;
+    background-color: #FF0000; /* Color rojo para el corazón */
+    opacity: 1; /* Inicia visible */
+    transition: transform 2s ease-out, opacity 2s ease-in-out; /* Transiciones para movimiento y opacidad */
+    filter: drop-shadow(0 0 4px #FF0000); /* Sutil brillo */
+    will-change: transform, opacity; /* Optimización para animaciones */
+
+    /* Propiedades para la forma de corazón */
+    /* El tamaño base se establecerá en JavaScript */
+    transform: rotate(-45deg); /* Rota el elemento principal para formar la punta inferior */
+    transform-origin: center center; /* Asegura que la rotación sea desde el centro */
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    width: 100%; /* Hereda el tamaño del padre */
+    height: 100%; /* Hereda el tamaño del padre */
+    background-color: #FF0000; /* Mismo color rojo */
+    border-radius: 50%; /* Hace que sean círculos */
+}
+
+.heart::before {
+    top: -50%; /* Posiciona el círculo superior */
+    left: 0;
+}
+
+.heart::after {
+    left: 50%; /* Posiciona el círculo lateral */
+    top: 0;
+}
+
+
+.gift-box {
+    cursor: pointer;
+    margin-top: 30px;
+    transition: transform 0.3s ease;
+}
+
+.gift-box:hover {
+    transform: scale(1.05);
+}
+
+.gift-box img {
+    width: 150px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.gift-box p {
+    font-size: 0.9em;
+    color: #ccc;
+    margin-top: 5px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #1a1a1a;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #FF00FF;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+    text-align: left;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.modal-content h2 {
+    color: #FF00FF;
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.modal-content p {
+    color: white;
+    line-height: 1.6;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #FF00FF;
+    text-decoration: none;
+}
